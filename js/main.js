@@ -16,8 +16,7 @@ const randomizerFloatInRange = (min,max,decimalPoint) =>{
   if (min >= max || min < 0){
     return Error('Ошибка диапазона');
   }
-  const random = min + Math.random() * (max - min);
-  return (Math.floor(10**decimalPoint * random)) / (10**decimalPoint);
+  return Math.floor(randomizerIntegerInRange(min * 10 ** decimalPoint, max * 10 ** decimalPoint)) / (10 ** decimalPoint);
 
 };
 randomizerFloatInRange();
