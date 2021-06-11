@@ -1,72 +1,131 @@
 
-function getRandomPositiveInteger (a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+function getRandomPositiveInteger (border1, border2) {
+  const lower = Math.ceil(Math.min(Math.abs(border1), Math.abs(border2)));
+  const upper = Math.floor(Math.max(Math.abs(border1), Math.abs(border2)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
 
-function getRandomPositiveFloat (a, b, digits = 1) {
-  const lower = Math.min(Math.abs(a), Math.abs(b));
-  const upper = Math.max(Math.abs(a), Math.abs(b));
+function getRandomPositiveFloat (border1, border2, digits = 1) {
+  const lower = Math.min(Math.abs(border1), Math.abs(border2));
+  const upper = Math.max(Math.abs(border1), Math.abs(border2));
   const result = Math.random() * (upper - lower) + lower;
   return result.toFixed(digits);
 }
-const TYPE = ['palace', 'flat', 'house', 'bungalow','hotel'];
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const IN_OUT_TIME = ['12:00', '13:00','14:00'];
-const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg','https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg','https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-const avatarRandomizer = () =>{
+
+const TYPE = [
+  'palace',
+  'flat',
+  'house',
+  'bungalow',
+  'hotel',
+];
+
+const FEATURES = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
+];
+
+const IN_OUT_TIME = [
+  '12:00',
+  '13:00',
+  '14:00',
+];
+
+const PHOTOS = [
+  'duonguyen-8LrGtIxxa4w.jpg',
+  'hbrandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'claire-rendall-b6kAwr1i0Iw.jpg',
+];
+
+const DESCRIPTIONS = [
+  'Замечательное место.',
+  'Хороший вид.',
+  'Рядом море.',
+  'Доступный транспорт.',
+];
+
+const MAX_PRICE = 100000;
+
+const MAX_ROOM = 100;
+
+const MAX_QUEST =200;
+
+const MAX_LAT = 90;
+
+const MAX_LNG = 180;
+
+const MIN_LAT_LOCATION =35.65000;
+
+const MAX_LAT_LOCATION=35.70000;
+
+const MIN_LNG_LOCATION=139.70000;
+
+const MAX_LNG_LOCATION=139.80000;
+
+const getAvatarRandom = () =>{
   const random = getRandomPositiveInteger(0,10);
-  if (random===0 || random===10){
+  if (random===0){
     return random;
   }
-  return '0'+ random;
-};
-const typeRandomizer = () => {
-  return TYPE[getRandomPositiveInteger(0,4)];
-};
-const checkInOutRandomizer = () => {
-  return IN_OUT_TIME[getRandomPositiveInteger(0,2)];
-};
-const featuresRandomizer = () => {
-  return FEATURES.slice(getRandomPositiveInteger(0,5));
-};
-const photosRandomizer = () => {
-  return PHOTOS.slice(getRandomPositiveInteger(0,2));
+  return (random).toString().padStart(2, 0);
 };
 
-const createAuthor = () => {
-  return {
-    avatar : 'mg/avatars/user'+avatarRandomizer()+'.png',
-  };
+const getRandomArrayElement = (elements) => {
+  const random =getRandomPositiveInteger(0,elements.length-1);
+  return elements[random];
 };
-const createOffer = () => {
-  return {
-    title : 'Заголовок '+getRandomPositiveInteger(0,10),
-    addres : getRandomPositiveFloat(0,90,6)+', '+getRandomPositiveFloat(0,90,6),
-    price : getRandomPositiveInteger(0,100000),
-    rooms : getRandomPositiveInteger(0,100),
-    type : typeRandomizer(),
-    quests : getRandomPositiveInteger(0,200),
-    checkin : checkInOutRandomizer(),
-    checkout: checkInOutRandomizer(),
-    features: featuresRandomizer(),
-    description: 'Описание '+getRandomPositiveInteger(0,10),
-    photos: photosRandomizer(),
-  };
+
+const shuffle = (array) => {
+  for (let counter = array.length - 1; counter > 0; counter--) {
+    const counter2 = Math.floor(Math.random() * (counter + 1));
+    [array[counter], array[counter2]] = [array[counter2], array[counter]];
+  }
 };
-const createLocation = () => {
-  return {
-    lat : getRandomPositiveFloat(35.65000,35.70000,5),
-    lng : getRandomPositiveFloat(139.70000,139.80000,5),
-  };
+
+const getRandomArrayElements = (elements) => {
+  shuffle(elements);
+  return elements.slice(getRandomPositiveInteger(0,elements.length-1));
 };
-const createCard = () => {
-  return {
-    author:createAuthor(),
-    offer:createOffer(),
-    location: createLocation(),
-  };
+
+const createPhotos = (Photos) => {
+  Photos.forEach((item,index) => {Photos[index] = `https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/${item}`;});
+  return Photos;
 };
-const cardsOffer = new Array(10).fill(null).map(() => {return createCard()});
+
+const createAuthor = () => ({avatar : `mg/avatars/user${getAvatarRandom()}.png`,
+});
+
+const createOffer = () => ({
+  title : `Заголовок ${getRandomPositiveInteger(0,10)}`,
+  addres : `${getRandomPositiveFloat(0,MAX_LAT,6)}, ${getRandomPositiveFloat(0,MAX_LNG,6)}`,
+  price : getRandomPositiveInteger(0,MAX_PRICE),
+  rooms : getRandomPositiveInteger(0,MAX_ROOM),
+  type : getRandomArrayElement(TYPE),
+  quests : getRandomPositiveInteger(0,MAX_QUEST),
+  checkin :getRandomArrayElement(IN_OUT_TIME),
+  checkout: getRandomArrayElement(IN_OUT_TIME),
+  features: getRandomArrayElements(FEATURES),
+  description: getRandomArrayElements(DESCRIPTIONS).join(' '),
+  photos: getRandomArrayElements(createPhotos(PHOTOS)),
+});
+
+const createLocation = () => ({
+  lat : getRandomPositiveFloat(MIN_LAT_LOCATION,MAX_LAT_LOCATION,5),
+  lng : getRandomPositiveFloat(MIN_LNG_LOCATION,MAX_LNG_LOCATION,5),
+});
+
+const createCard = () => ({
+  author:createAuthor(),
+  offer:createOffer(),
+  location: createLocation(),
+});
+
+const cardsOffer = new Array(10).fill(null).map(() => createCard());
+
+cardsOffer;
+
