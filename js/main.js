@@ -1,14 +1,14 @@
 
-function getRandomPositiveInteger (border1, border2) {
-  const lower = Math.ceil(Math.min(Math.abs(border1), Math.abs(border2)));
-  const upper = Math.floor(Math.max(Math.abs(border1), Math.abs(border2)));
+function getRandomPositiveInteger (firstBorder, secondBorder) {
+  const lower = Math.ceil(Math.min(Math.abs(firstBorder), Math.abs(secondBorder)));
+  const upper = Math.floor(Math.max(Math.abs(firstBorder), Math.abs(secondBorder)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
 
-function getRandomPositiveFloat (border1, border2, digits = 1) {
-  const lower = Math.min(Math.abs(border1), Math.abs(border2));
-  const upper = Math.max(Math.abs(border1), Math.abs(border2));
+function getRandomPositiveFloat (firstBorder, secondBorder, digits = 1) {
+  const lower = Math.min(Math.abs(firstBorder), Math.abs(secondBorder));
+  const upper = Math.max(Math.abs(firstBorder), Math.abs(secondBorder));
   const result = Math.random() * (upper - lower) + lower;
   return result.toFixed(digits);
 }
@@ -59,13 +59,17 @@ const MAX_LAT = 90;
 
 const MAX_LNG = 180;
 
-const MIN_LAT_LOCATION =35.65000;
+const MIN_LAT_LOCATION = 35.65000;
 
-const MAX_LAT_LOCATION=35.70000;
+const MAX_LAT_LOCATION = 35.70000;
 
-const MIN_LNG_LOCATION=139.70000;
+const MIN_LNG_LOCATION = 139.70000;
 
-const MAX_LNG_LOCATION=139.80000;
+const MAX_LNG_LOCATION = 139.80000;
+
+const DIGIT_LOCATION = 5;
+
+const MAX_TITLE = 10;
 
 const getAvatarRandom = () =>{
   const random = getRandomPositiveInteger(0,10);
@@ -101,8 +105,8 @@ const createAuthor = () => ({avatar : `mg/avatars/user${getAvatarRandom()}.png`,
 });
 
 const createOffer = () => ({
-  title : `Заголовок ${getRandomPositiveInteger(0,10)}`,
-  addres : `${getRandomPositiveFloat(0,MAX_LAT,6)}, ${getRandomPositiveFloat(0,MAX_LNG,6)}`,
+  title : `Заголовок ${getRandomPositiveInteger(0,MAX_TITLE)}`,
+  addres : `${getRandomPositiveFloat(0,MAX_LAT,DIGIT_LOCATION)}, ${getRandomPositiveFloat(0,MAX_LNG,DIGIT_LOCATION)}`,
   price : getRandomPositiveInteger(0,MAX_PRICE),
   rooms : getRandomPositiveInteger(0,MAX_ROOM),
   type : getRandomArrayElement(TYPE),
@@ -115,8 +119,8 @@ const createOffer = () => ({
 });
 
 const createLocation = () => ({
-  lat : getRandomPositiveFloat(MIN_LAT_LOCATION,MAX_LAT_LOCATION,5),
-  lng : getRandomPositiveFloat(MIN_LNG_LOCATION,MAX_LNG_LOCATION,5),
+  lat : getRandomPositiveFloat(MIN_LAT_LOCATION,MAX_LAT_LOCATION,DIGIT_LOCATION),
+  lng : getRandomPositiveFloat(MIN_LNG_LOCATION,MAX_LNG_LOCATION,DIGIT_LOCATION),
 });
 
 const createCard = () => ({
