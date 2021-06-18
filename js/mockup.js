@@ -1,4 +1,4 @@
-import {TYPE, FEATURES,IN_OUT_TIME,PHOTOS,DESCRIPTIONS,MAX_PRICE,MAX_ROOM,MAX_QUEST,MAX_LAT,MAX_LNG,MIN_LAT_LOCATION,MAX_LAT_LOCATION,MIN_LNG_LOCATION,MAX_LNG_LOCATION,DIGIT_LOCATION,MAX_TITLE} from './data.js';
+import {TYPE, FEATURES,IN_OUT_TIME,PHOTOS,DESCRIPTIONS,MAX_PRICE,MAX_ROOM,MAX_QUEST,MAX_LAT,MAX_LNG,MIN_LAT_LOCATION,MAX_LAT_LOCATION,MIN_LNG_LOCATION,MAX_LNG_LOCATION,DIGIT_LOCATION,MAX_TITLE, MAX_AVATAR_NUMBER} from './data.js';
 
 function getRandomPositiveInteger (firstBorder, secondBorder) {
   const lower = Math.ceil(Math.min(Math.abs(firstBorder), Math.abs(secondBorder)));
@@ -15,7 +15,7 @@ function getRandomPositiveFloat (firstBorder, secondBorder, digits = 1) {
 }
 
 const getAvatarRandom = () =>{
-  const random = getRandomPositiveInteger(0,10);
+  const random = getRandomPositiveInteger(0,MAX_AVATAR_NUMBER);
   if (random===0){
     return random;
   }
@@ -27,10 +27,10 @@ const getRandomArrayElement = (elements) => {
   return elements[random];
 };
 
-const shuffleArray = (array) => {
-  for (let counterOne = array.length - 1; counterOne > 0; counterOne--) {
+const shuffleArray = (datum) => {
+  for (let counterOne = datum.length - 1; counterOne > 0; counterOne--) {
     const counterTwo = Math.floor(Math.random() * (counterOne + 1));
-    [array[counterOne], array[counterTwo]] = [array[counterTwo], array[counterOne]];
+    [datum[counterOne], datum[counterTwo]] = [datum[counterTwo], datum[counterOne]];
   }
 };
 
