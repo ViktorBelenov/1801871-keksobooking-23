@@ -1,2 +1,5 @@
-import { cardsOffer } from './mockup.js';
-cardsOffer;
+import { createTestCard } from './card';
+import { createCard } from './mockup';
+
+const card = createTestCard(createCard());
+card;
