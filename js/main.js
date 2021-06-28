@@ -1,5 +1,6 @@
-import { createTestCard } from './card';
-import { createCard } from './mockup';
-
-const card = createTestCard(createCard());
+import { testCard, dataCard } from './card.js';
+const card = testCard;
+const data = dataCard;
+data;
 card;
+

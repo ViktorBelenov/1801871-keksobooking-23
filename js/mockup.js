@@ -72,6 +72,6 @@ const createCard = () => ({
   location: createLocation(),
 });
 
-const cardsOffer = new Array(10).fill(null).map(() => createCard());
+const cardsOffer = createCard();
 
-export {cardsOffer, createCard};
+export {cardsOffer};

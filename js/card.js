@@ -1,13 +1,12 @@
-import { cardsOffer, createCard } from './mockup.js';
-cardsOffer;
+import {cardsOffer} from './mockup.js';
 
 
-const dataCard = createCard();
+const dataCard = cardsOffer;
 
 const cardTemplate = document.querySelector('#card').content;
 
 const findOutTypeHouse = (testDataCard) => {
-  switch(testDataCard.type) {
+  switch(testDataCard.offer.type) {
     case 'flat':
       return 'Квартира';
     case 'bungalow':
@@ -92,5 +91,5 @@ const createTestCard = (testDataCard) => {
   checkEmptyData(cardAvatar);
   return card;
 };
-
-export {createTestCard};
+const testCard = createTestCard(dataCard);
+export {testCard, dataCard};
