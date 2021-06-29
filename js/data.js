@@ -23,7 +23,7 @@ const IN_OUT_TIME = [
 
 const PHOTOS = [
   'duonguyen-8LrGtIxxa4w.jpg',
-  'hbrandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
