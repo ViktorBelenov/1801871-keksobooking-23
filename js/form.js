@@ -1,4 +1,4 @@
-const formRoomCapacity = document.querySelector('#capacity')
+const formRoomCapacity = document.querySelector('#capacity');
 const formRoomNumber = document.querySelector('#room_number');
 const childNodesRoomCapacity = formRoomCapacity.childNodes;
 childNodesRoomCapacity[1].setAttribute('disabled', 'true'); //0
