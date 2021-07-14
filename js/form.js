@@ -29,7 +29,7 @@ const getPageEnable = function () {
 
 informationForm.classList.add('ad-form--disabled');
 
-mapFilter.classList.add('map__filters--disabled')
+mapFilter.classList.add('map__filters--disabled');
 
 getDisabled(childInformationForm);
 
