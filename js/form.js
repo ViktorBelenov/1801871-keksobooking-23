@@ -2,13 +2,43 @@ const formRoomCapacity = document.querySelector('#capacity');
 const formRoomNumber = document.querySelector('#room_number');
 const childRoomCapacity = formRoomCapacity.children;
 
+const informationForm = document.querySelector('.ad-form');
+const childInformationForm = informationForm.children;
 
+const mapFilter = document.querySelector('.map__filters');
+const childMapFilter = mapFilter.children;
+
+const getDisabled = function(children) {
+  Array.from(children).forEach((element) => {
+    element.setAttribute('disabled', 'true');
+  });
+};
+
+const getEnable = function(children) {
+  Array.from(children).forEach((element) => {
+    element.removeAttribute('disabled');
+  });
+};
+
+const getPageEnable = function () {
+  getEnable(childInformationForm);
+  getEnable(childMapFilter);
+  informationForm.classList.remove('ad-form--disabled');
+  mapFilter.classList.remove('map__filters--disabled');
+};
+
+informationForm.classList.add('ad-form--disabled');
+
+mapFilter.classList.add('map__filters--disabled');
+
+getDisabled(childInformationForm);
+
+getDisabled(childMapFilter);
+
+
+getDisabled(childRoomCapacity);
 formRoomNumber.addEventListener('change', (evt) =>{
-  childRoomCapacity[0].setAttribute('disabled', 'true');
-  childRoomCapacity[1].setAttribute('disabled', 'true');
-  childRoomCapacity[2].setAttribute('disabled', 'true');
-  childRoomCapacity[3].setAttribute('disabled', 'true');
-
+  getDisabled(childRoomCapacity);
   if (evt.target.value === '100') {
     childRoomCapacity[3].removeAttribute('disabled');
     return;
@@ -23,4 +53,5 @@ formRoomNumber.addEventListener('change', (evt) =>{
     childRoomCapacity[0].removeAttribute('disabled');
   }
 });
+getPageEnable();
 export {};
