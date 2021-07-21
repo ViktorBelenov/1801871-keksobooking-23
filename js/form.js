@@ -53,5 +53,5 @@ formRoomNumber.addEventListener('change', (evt) =>{
     childRoomCapacity[0].removeAttribute('disabled');
   }
 });
-getPageEnable();
-export {};
+
+export {getPageEnable};

@@ -92,4 +92,4 @@ const createTestCard = (testDataCard) => {
   return card;
 };
 const testCard = createTestCard(dataCard);
-export {testCard, dataCard};
+export {createTestCard};

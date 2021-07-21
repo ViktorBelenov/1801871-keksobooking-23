@@ -40,8 +40,9 @@ const getRandomArrayElements = (elements) => {
 };
 
 const createPhotos = (photos) => {
-  photos.forEach((item,index) => {photos[index] = `https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/${item}`;});
-  return photos;
+  const clonePhotos = photos.slice();
+  clonePhotos.forEach((item,index) => {clonePhotos[index] = `https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/${item}`;});
+  return clonePhotos;
 };
 
 const createAuthor = () => ({avatar : `mg/avatars/user${getAvatarRandom()}.png`,
@@ -74,4 +75,4 @@ const createCard = () => ({
 
 const cardsOffer = createCard();
 
-export {cardsOffer};
+export {createCard,cardsOffer};
