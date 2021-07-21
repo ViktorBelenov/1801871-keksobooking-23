@@ -20,7 +20,7 @@ const getEnable = function(children) {
   });
 };
 
-const getPageEnable = function () {
+const setEnabled = function () {
   getEnable(childInformationForm);
   getEnable(childMapFilter);
   informationForm.classList.remove('ad-form--disabled');
@@ -54,4 +54,4 @@ formRoomNumber.addEventListener('change', (evt) =>{
   }
 });
 
-export {getPageEnable};
+export {setEnabled};

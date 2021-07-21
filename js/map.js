@@ -1,4 +1,4 @@
-import {getPageEnable} from './form.js';
+import {setEnabled} from './form.js';
 import {createCard} from './mockup.js';
 import {createTestCard} from './card.js';
 
@@ -6,7 +6,7 @@ const testLocationHome = createCard();
 const testLocationHotel = createCard();
 
 const map = L.map('map-canvas')
-  .on('load', () => {getPageEnable();})
+  .on('load', () => {setEnabled();})
   .setView({
     lat: 35.68950,
     lng: 139.6917,
